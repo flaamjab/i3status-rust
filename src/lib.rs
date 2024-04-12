@@ -366,6 +366,7 @@ impl BarState {
     }
 
     async fn process_event(&mut self, restart: fn() -> !) -> Result<(), BlockError> {
+        println!("enter select");
         tokio::select! {
             // Poll blocks
             Some(()) = self.running_blocks.next() => (),
@@ -443,6 +444,7 @@ impl BarState {
                 }
             }
         }
+        println!("exit select");
         Ok(())
     }
 
